@@ -1,12 +1,21 @@
 import css from "./ImageCard.module.css";
-export default function Image({ data, onClick }) {
+
+interface Props {
+  data: {
+    urls: { small: string };
+    alt_description: string | null;
+  };
+  onClick: () => void;
+}
+
+export default function Image({ data, onClick }: Props) {
   const { urls, alt_description } = data;
 
   return (
     <div className={css.imagewrapper}>
       <img
         src={urls.small}
-        alt={alt_description || "Unsplash image"} // if alt is null => "Unsplash image"
+        alt={alt_description || "Unsplash image"}
         onClick={onClick}
         className={css.image}
       />

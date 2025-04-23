@@ -1,8 +1,16 @@
 import Modal from "react-modal";
 import css from "./ImageModal.module.css";
+import { Image } from "../../types/types";
+
 Modal.setAppElement("#root");
 
-export default function ImageModal({ isOpen, image, onRequestClose }) {
+interface Props {
+  isOpen: boolean;
+  image: Image | null;
+  onRequestClose: () => void;
+}
+
+export default function ImageModal({ isOpen, image, onRequestClose }: Props) {
   if (!image) return null;
 
   return (
@@ -16,7 +24,7 @@ export default function ImageModal({ isOpen, image, onRequestClose }) {
     >
       <img
         src={image.urls.regular}
-        alt={image.alt_description}
+        alt={image.alt_description || "Image"}
         className={css.image}
       />
     </Modal>

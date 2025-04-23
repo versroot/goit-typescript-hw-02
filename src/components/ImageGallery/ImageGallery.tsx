@@ -1,7 +1,13 @@
 import ImageCard from "../ImageCard/ImageCard";
 import css from "./ImageGallery.module.css";
+import { Image } from "../../types/types";
 
-export default function Gallery({ images, onImageClick }) {
+interface Props {
+  images: Image[];
+  onImageClick: (img: Image) => void;
+}
+
+export default function Gallery({ images, onImageClick }: Props) {
   return (
     <div className={css.grid}>
       {images.map((img) => (

@@ -3,14 +3,18 @@ import { BsSearch } from "react-icons/bs";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 
-export default function SearchBar({ onSubmit }) {
-  const [query, setQuery] = useState("");
+interface Props {
+  onSubmit: (value: string) => void;
+}
 
-  const handleChange = (e) => {
+export default function SearchBar({ onSubmit }: Props) {
+  const [query, setQuery] = useState<string>("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setQuery(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const trimmed = query.trim();
     if (!trimmed) {
